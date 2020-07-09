@@ -13,7 +13,6 @@ dbsync_latest_version() {
 #
 # Outputs the location to DB Sync depending on:
 # * The availability of $GIT_SOURCE
-# * The method used ("script" or "git" in the script, defaults to "git")
 #
 dbsync_source() {
   local DBSYNC_METHOD
@@ -44,7 +43,7 @@ do_install() {
         }
     else
         # Cloning to $INSTALL_DIR
-        echo "=> Downloading db0sync from git to '$INSTALL_DIR'"
+        echo "=> Downloading db-sync from git to '$INSTALL_DIR'"
         command printf '\r=> '
         mkdir -p "${INSTALL_DIR}"
         if [ "$(ls -A "${INSTALL_DIR}")" ]; then
@@ -85,7 +84,33 @@ do_install() {
     if ! command git --git-dir="$INSTALL_DIR"/.git --work-tree="$INSTALL_DIR" gc --auto --aggressive --prune=now ; then
         echo >&2 "Your version of git is out of date. Please update it!"
     fi
-    return
+
+    local PROFILE_INSTALL_DIR
+    PROFILE_INSTALL_DIR="$(dbsync_install_dir | command sed "s:^$HOME:\$HOME:")"
+    SOURCE_STR="\\nexport DBSYNC_DIR=\"${PROFILE_INSTALL_DIR}\"\\nif [ -f \"\$DBSYNC_DIR/db-sync.sh\" ]; then\\n\t export PATH=\"$INSTALL_DIR:\$PATH\"\\nfi  # This loads db-sync\\n"
+    local DBSYNC_PROFILE
+    DBSYNC_PROFILE="${HOME}/.bashrc"
+
+    if ! command grep -qc '/db-sync.sh' "${DBSYNC_PROFILE}"; then
+      echo "=> Appending db-sync source string to ${DBSYNC_PROFILE}"
+      command printf "${SOURCE_STR}" >> "${DBSYNC_PROFILE}"
+    else
+      echo "=> db-sync source string already in ${DBSYNC_PROFILE}"
+    fi
+
+    \. "${DBSYNC_PROFILE}"
+
+    dbsync_reset
+
+    echo "=> Close and reopen your terminal to start using db-sync.sh"
+}
+
+#
+# Unsets the various functions defined
+# during the execution of the install script
+#
+dbsync_reset() {
+  unset -f dbsync_install_dir dbsync_latest_version dbsync_source do_install
 }
 
 do_install
