@@ -4,7 +4,7 @@ A script to copy over a production database to a staging server.
 
 ## Installation
 To install or update the script run the following curl script
-```curl -o- https://raw.githubusercontent.com/clivewalkden/bash-magento2-db-sync/feature/add-installer/install.sh | bash```
+```curl -o- https://raw.githubusercontent.com/clivewalkden/bash-magento2-db-sync/development/install.sh | bash```
 
 You can save a configuration file in the Magento directory to save answering some of the questions.
 
