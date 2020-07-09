@@ -1,4 +1,4 @@
-# Magento 2 Production DB Sync
+# Magento 2 Production DB Sync v1.0.0
 
 A script to copy over a production database to a staging server.
 
