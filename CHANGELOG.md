@@ -6,6 +6,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.2.1] - 2020-07-10
+### Changed
+- Fixed message spacing issue.
+- Added version number to the menu help option.
+- Added reminder to be in a Magento 2 directory before trying to run the command.
+
+### Fixed
+- Installation link was pointing to old version.
+
+
 ## [1.2.0] - 2020-07-10
 ### Added
 - Added menu option to allow full customer and order backups.
