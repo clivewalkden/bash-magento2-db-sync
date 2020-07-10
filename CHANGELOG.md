@@ -6,6 +6,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.2.0] - 2020-07-10
+### Added
+- Added menu option to allow full customer and order backups.
+
+
 ## [1.1.0] - 2020-07-10
 ### Added
 - Installer

@@ -7,7 +7,7 @@ dbsync_install_dir() {
 }
 
 dbsync_latest_version() {
-  echo "v1.1.0"
+  echo "v1.2.0"
 }
 
 #

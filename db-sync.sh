@@ -7,6 +7,9 @@
 # set path to allow calling util subdir files
 source "set_util"
 
+# Load the menu and help
+source "${util}menu.sh"
+
 # Make sure we are in a Magento directory
 if [ ! -f "bin/magento" ]; then
     echo -e "${bg_red}                                                ${txt_end}"
