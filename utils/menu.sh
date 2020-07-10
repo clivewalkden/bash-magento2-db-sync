@@ -25,9 +25,11 @@ _arg_full="off"
 
 dbsynchelp() {
   cat <<-HEREDOC
-  Magento 2 DB Sync
+  Magento 2 DB Sync v1.2.1
 
   Syncronize a database from production to staging, testing or development environments.
+
+  Make sure you are in a Magento 2 directory before trying to run any scripts.
 
   Usage: db-sync.sh [-f|--(no-)full] [-h|--help]
   Options:

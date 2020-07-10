@@ -3,7 +3,7 @@
 # Use the settings to check your connection
 echo -e "\n${txt_white}${bg_black}Backing up remote database(s).   ${txt_end}\n"
 if [ $_arg_full == 'on' ]; then
-echo -e "\n${txt_white}${bg_black}  Full customer and order backup.${txt_end}\n"
+echo -e "${txt_white}${bg_black}  Full customer and order backup.${txt_end}\n"
 fi
 
 ssh -p "${remote_port}" "${remote_username}@${remote_host}" <<ENDSSH
