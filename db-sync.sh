@@ -5,10 +5,11 @@
 #
 
 # set path to allow calling util subdir files
-source "set_util"
+#source "set_util"
+dbsyncutil="$( dirname ${BASH_SOURCE[0]} )/utils/"
 
 # Load the menu and help
-source "${util}menu.sh"
+source "${dbsyncutil}menu.sh"
 
 # Make sure we are in a Magento directory
 if [ ! -f "bin/magento" ]; then
@@ -19,7 +20,7 @@ if [ ! -f "bin/magento" ]; then
 fi
 
 # Set global paths and functions
-source "${util}set_constants.sh"
+source "${dbsyncutil}set_constants.sh"
 
 echo -e "${bg_black}${txt_white}                                              ${txt_end}"
 echo -e "${bg_black}${txt_white}  Copy over a production database to staging  ${txt_end}"
@@ -34,7 +35,7 @@ fi
 set -e
 
 # Set ${remote_host}
-source "${util}set_remote_host.sh"
+source "${dbsyncutil}set_remote_host.sh"
 
 # Test Connection
 while true; do
@@ -42,17 +43,17 @@ while true; do
   read -p "Would you like to test the connection? " yn
 
   case $yn in
-    [Yy]* ) source "${util}ssh_connection_test.sh"; break;;
+    [Yy]* ) source "${dbsyncutil}ssh_connection_test.sh"; break;;
     [Nn]* ) break;;
     * ) echo "Please answer yes or no.";;
   esac
 done
 
 # Run the remote backup
-source "${util}remote_backup.sh"
-source "${util}remote_retrieve.sh"
-source "${util}local_backup.sh"
-source "${util}url_update.sh"
+source "${dbsyncutil}remote_backup.sh"
+source "${dbsyncutil}remote_retrieve.sh"
+source "${dbsyncutil}local_backup.sh"
+source "${dbsyncutil}url_update.sh"
 
 # Import the database(s)
 while true; do
@@ -60,7 +61,7 @@ while true; do
   read -p "Are you ready to import databases to local system? " yn
 
   case $yn in
-    [Yy]* ) source "${util}local_import.sh"; break;;
+    [Yy]* ) source "${dbsyncutil}local_import.sh"; break;;
     [Nn]* ) break;;
     * ) echo "Please answer yes or no.";;
   esac
@@ -72,7 +73,7 @@ while true; do
   read -p "Do you want to download the latest imagery? " yn
 
   case $yn in
-    [Yy]* ) source "${util}local_imagery_import.sh"; break;;
+    [Yy]* ) source "${dbsyncutil}local_imagery_import.sh"; break;;
     [Nn]* ) break;;
     * ) echo "Please answer yes or no.";;
   esac
