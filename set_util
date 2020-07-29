@@ -1,3 +1,0 @@
-#!/usr/bin/env bash
-
-dbsyncutil="$( dirname ${BASH_SOURCE[0]} )/utils/"
