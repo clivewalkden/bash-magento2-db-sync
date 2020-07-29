@@ -1,10 +1,11 @@
 #!/usr/bin/env bash
+version="1.3.0"
 
 die()
 {
 	local _ret=$2
 	test -n "$_ret" || _ret=1
-	test "$_PRINT_HELP" = yes && dbsynchelp >&2
+	test "$_PRINT_HELP" = yes && dbsync_print_help >&2
 	echo "$1" >&2
 	exit ${_ret}
 }
@@ -22,19 +23,24 @@ begins_with_short_option()
 
 # THE DEFAULTS INITIALIZATION - OPTIONALS
 _arg_full="off"
+_arg_local_backup="off"
 
-dbsynchelp() {
-  cat <<-HEREDOC
-  Magento 2 DB Sync v1.2.1
+dbsync_print_help() {
+  cat <<HEREDOC
+
+  Magento 2 DB Sync v$version
 
   Syncronize a database from production to staging, testing or development environments.
 
   Make sure you are in a Magento 2 directory before trying to run any scripts.
 
-  Usage: db-sync.sh [-f|--(no-)full] [-h|--help]
+  Usage: db-sync.sh [-b|--(no-)local-backup] [-f|--(no-)full] [-v|--version] [-h|--help]
   Options:
+    -b, --local-backup, --no-local-backup: perform a backup before importing remote (off by default)
     -f, --full, --no-full: full database dump (off by default)
+    -v, --version: Prints version
     -h, --help: Prints help
+
 HEREDOC
 }
 
@@ -45,16 +51,22 @@ parse_commandline()
 	do
 		_key="$1"
 		case "$_key" in
-			# The full argurment doesn't accept a value,
-			# we expect the --full or -f, so we watch for them.
+			-b|--no-local-backup|--local-backup)
+				_arg_local_backup="on"
+				test "${1:0:5}" = "--no-" && _arg_local_backup="off"
+				;;
+			-b*)
+				_arg_local_backup="on"
+				_next="${_key##-b}"
+				if test -n "$_next" -a "$_next" != "$_key"
+				then
+					{ begins_with_short_option "$_next" && shift && set -- "-b" "-${_next}" "$@"; } || die "The short option '$_key' can't be decomposed to ${_key:0:2} and -${_key:2}, because ${_key:0:2} doesn't accept value and '-${_key:2:1}' doesn't correspond to a short option."
+				fi
+				;;
 			-f|--no-full|--full)
 				_arg_full="on"
 				test "${1:0:5}" = "--no-" && _arg_full="off"
 				;;
-			# We support getopts-style short arguments clustering,
-			# so as -f doesn't accept value, other short options may be appended to it, so we watch for -f*.
-			# After stripping the leading -f from the argument, we have to make sure
-			# that the first character that follows coresponds to a short option.
 			-f*)
 				_arg_full="on"
 				_next="${_key##-f}"
@@ -63,14 +75,20 @@ parse_commandline()
 					{ begins_with_short_option "$_next" && shift && set -- "-f" "-${_next}" "$@"; } || die "The short option '$_key' can't be decomposed to ${_key:0:2} and -${_key:2}, because ${_key:0:2} doesn't accept value and '-${_key:2:1}' doesn't correspond to a short option."
 				fi
 				;;
-			# See the comment of option '--full' to see what's going on here - principle is the same.
-			-h|--help)
-				dbsynchelp
+			-v|--version)
+				echo db-sync.sh - v$version
 				exit 0
 				;;
-			# See the comment of option '-f' to see what's going on here - principle is the same.
+			-v*)
+				echo db-sync.sh - v$version
+				exit 0
+				;;
+			-h|--help)
+				dbsync_print_help
+				exit 0
+				;;
 			-h*)
-				dbsynchelp
+				dbsync_print_help
 				exit 0
 				;;
 			*)

@@ -6,6 +6,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.3.0] - 2020-07-29
+### Added
+- local-backup option (enabled by default)
+
+### Changed
+- Updated some variables to stop clashing with other scripts.
+
+
 ## [1.2.1] - 2020-07-10
 ### Changed
 - Fixed message spacing issue.
