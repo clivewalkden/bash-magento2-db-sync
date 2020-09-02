@@ -6,6 +6,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+- wordpress flag (disabled by default) to backup wordpress database and imagery.
+
+### Changed
+- Now using n98 to backup WordPress database to improve speed of system.
+
+
 ## [1.3.0] - 2020-07-29
 ### Added
 - local-backup option (enabled by default)

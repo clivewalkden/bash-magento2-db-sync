@@ -3,7 +3,7 @@
 ## About
 A script to copy over a production database to another server, also has the ability to copy across imagery.
 
-Currently the script is configured to attempt Magento 2 and WordPress database migrations and assumes you have your WordPress database details configured in the `magento/app/etc/env.php` file as a second `connection`.
+Currently the script is configured to attempt Magento 2 and WordPress database migrations and assumes you have your WordPress database details configured in the `magento/app/etc/env.php` file as a second `connection` named `wordpress`.
 
 ## Requirements
 - You need curl installed locally. 
