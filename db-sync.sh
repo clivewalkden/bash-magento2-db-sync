@@ -13,9 +13,9 @@ source "${dbsyncutil}menu.sh"
 
 # Make sure we are in a Magento directory
 if [ ! -f "bin/magento" ]; then
-    echo -e "${bg_red}                                                ${txt_end}"
+    echo -e "${bg_red}${txt_white}                                                ${txt_end}"
     echo -e "${bg_red}${txt_white}  You are not currently in a Magento directory  ${txt_end}"
-    echo -e "${bg_red}                                                ${txt_end}"
+    echo -e "${bg_red}${txt_white}                                                ${txt_end}"
     exit
 fi
 
@@ -27,7 +27,7 @@ echo -e "${bg_black}${txt_white}  Copy over a production database to staging  ${
 echo -e "${bg_black}${txt_white}                                              ${txt_end}"
 
 # Check for a local config file
-echo -e "\n${txt_white}${bg_black}Checking for local configuration file (${conf_file}).${txt_end}\n"
+echo -e "${txt_blue}  Checking for local configuration file (${conf_file}).  ${txt_end}"
 if [[ -f "$conf_file" ]]; then
     . "$conf_file"
 fi
@@ -79,7 +79,10 @@ while true; do
   esac
 done
 
-echo -e "\n${txt_white}${bg_black}Run the Magento configuration.${txt_end}\n"
+echo -e "${bg_black}${txt_white}                                  ${txt_end}"
+echo -e "${bg_black}${txt_white}  Run the Magento configuration.  ${txt_end}"
+echo -e "${bg_black}${txt_white}                                  ${txt_end}"
+
 n98-magerun setup:upgrade
 echo
 n98-magerun deploy:mode:set developer
@@ -90,4 +93,6 @@ n98-magerun indexer:reindex
 echo
 n98-magerun cache:flush
 
-echo -e "\n${txt_green}Database migrated: ${domain}${txt_end}\n"
+echo -e "${bg_green}${txt_white}${txt_bold}                                             ${txt_end}"
+echo -e "${bg_green}${txt_white}${txt_bold}  Database migrated: ${txt_yellow}${domain}  ${txt_end}"
+echo -e "${bg_green}${txt_white}${txt_bold}                                             ${txt_end}"

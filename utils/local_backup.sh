@@ -6,9 +6,8 @@ if [ $_arg_local_backup == 'on' ]; then
 
     n98-magerun --root-dir="${PWD}" db:dump --compression="gzip" --force "../backups/$DATESTAMP-m2.sql.gz"
 
-    if [ ! -z $DB_WP_HOST ]; then
-        mysqldump -u$DB_WP_USER -p$DB_WP_PASS $DB_WP_DBASE>"../backups/$DATESTAMP-wp.sql"
-        gzip "../backups/$DATESTAMP-wp.sql"
+    if [ $_arg_wordpress == 'on' ]; then
+        n98-magerun --root-dir="${PWD}" db:dump --compression="gzip" --connection="wordpress" --force "../backups/$DATESTAMP-wp.sql.gz"
     fi
 else
     # No local backup

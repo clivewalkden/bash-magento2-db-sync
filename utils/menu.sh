@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-version="1.3.0"
+version="1.4.0"
 
 die()
 {
@@ -24,6 +24,7 @@ begins_with_short_option()
 # THE DEFAULTS INITIALIZATION - OPTIONALS
 _arg_full="off"
 _arg_local_backup="off"
+_arg_wordpress="off"
 
 dbsync_print_help() {
   cat <<HEREDOC
@@ -34,10 +35,11 @@ dbsync_print_help() {
 
   Make sure you are in a Magento 2 directory before trying to run any scripts.
 
-  Usage: db-sync.sh [-b|--(no-)local-backup] [-f|--(no-)full] [-v|--version] [-h|--help]
+  Usage: db-sync.sh [-b|--local-backup] [-f|--full] [-w|--wordpress] [-v|--version] [-h|--help]
   Options:
-    -b, --local-backup, --no-local-backup: perform a backup before importing remote (off by default)
-    -f, --full, --no-full: full database dump (off by default)
+    -b, --local-backup: perform a backup before importing remote (off by default)
+    -f, --full: full database dump (off by default)
+	-w, --wordpress: include wordpress content (off by default)"
     -v, --version: Prints version
     -h, --help: Prints help
 
@@ -73,6 +75,18 @@ parse_commandline()
 				if test -n "$_next" -a "$_next" != "$_key"
 				then
 					{ begins_with_short_option "$_next" && shift && set -- "-f" "-${_next}" "$@"; } || die "The short option '$_key' can't be decomposed to ${_key:0:2} and -${_key:2}, because ${_key:0:2} doesn't accept value and '-${_key:2:1}' doesn't correspond to a short option."
+				fi
+				;;
+			-w|--no-wordpress|--wordpress)
+				_arg_wordpress="on"
+				test "${1:0:5}" = "--no-" && _arg_wordpress="off"
+				;;
+			-w*)
+				_arg_wordpress="on"
+				_next="${_key##-w}"
+				if test -n "$_next" -a "$_next" != "$_key"
+				then
+					{ begins_with_short_option "$_next" && shift && set -- "-w" "-${_next}" "$@"; } || die "The short option '$_key' can't be decomposed to ${_key:0:2} and -${_key:2}, because ${_key:0:2} doesn't accept value and '-${_key:2:1}' doesn't correspond to a short option."
 				fi
 				;;
 			-v|--version)
