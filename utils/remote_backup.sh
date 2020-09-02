@@ -1,10 +1,12 @@
 #!/usr/bin/env bash
 
 # Use the settings to check your connection
-echo -e "\n${txt_white}${bg_black}Backing up remote database(s).   ${txt_end}\n"
+echo -e "${bg_black}${txt_white}                                   ${txt_end}"
+echo -e "${bg_black}${txt_white}  Backing up remote database(s).   ${txt_end}"
 if [ $_arg_full == 'on' ]; then
-    echo -e "${txt_white}${bg_black}  Full customer and order backup.${txt_end}\n"
+    echo -e "${bg_black}${txt_white}  Full customer and order backup.  ${txt_end}"
 fi
+echo -e "${bg_black}${txt_white}                                   ${txt_end}"
 
 ssh -p "${remote_port}" "${remote_username}@${remote_host}" <<ENDSSH
 mkdir -p $remote_backup_dir
@@ -22,6 +24,6 @@ n98-magerun db:dump --compression="gzip" --strip="@log @sessions @trade @sales" 
 fi
 
 if [ $_arg_wordpress == 'on' ]; then
-n98-magerun db:dump --compression="gzip" --conneciton="wordpress" --force $remote_backup_dir/latest-wp.sql.gz
+n98-magerun db:dump --compression="gzip" --connection="wordpress" --force $remote_backup_dir/latest-wp.sql.gz
 fi
 ENDSSH
