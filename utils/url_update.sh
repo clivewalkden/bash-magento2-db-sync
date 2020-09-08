@@ -30,6 +30,6 @@ old_domain=$(echo ${old_domain} | sed 's:/*$::')
 
 sed -i "s|$old_domain|$new_domain|g" ../backups/latest-m2.sql
 
-if existRemoteFile "$remote_wp_db_file"; then
+if [ $_arg_wordpress == 'on' ]; then
     sed -i "s|$old_domain|$new_domain|g" ../backups/latest-wp.sql
 fi

@@ -1,8 +1,9 @@
 #!/usr/bin/env bash
 
 # Set data
-
-echo -e "\n${txt_white}${bg_black}Enter the remote server info.${txt_end}\n"
+echo -e ""
+echo -e "${txt_blue}  Enter the remote server info.${txt_end}"
+echo -e ""
 
 # loop until validation
 while [[ -z ${remote_host} ]]; do

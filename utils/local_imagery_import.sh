@@ -1,7 +1,9 @@
 #!/usr/bin/env bash
 
 # Backup the current local database
-echo -e "\n${txt_white}${bg_black}Importing imagery from live.${txt_end}\n"
+echo -e ""
+echo -e "${txt_blue}  Importing imagery from live.${txt_end}"
+echo -e ""
 
 # Set the default directories to transfer
 source=("/pub/media/" "/wp/wp-content/uploads/")

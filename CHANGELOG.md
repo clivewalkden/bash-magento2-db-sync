@@ -6,6 +6,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.4.1] - 2020-09-08
+### Changed
+- Starting to unify messages.
+
+### Fixed
+- URL switch for WordPress database.
+
+
 ## [1.4.0] - 2020-09-02
 ### Added
 - wordpress flag (disabled by default) to backup wordpress database and imagery.

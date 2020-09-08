@@ -27,7 +27,9 @@ echo -e "${bg_black}${txt_white}  Copy over a production database to staging  ${
 echo -e "${bg_black}${txt_white}                                              ${txt_end}"
 
 # Check for a local config file
+echo -e ""
 echo -e "${txt_blue}  Checking for local configuration file (${conf_file}).  ${txt_end}"
+echo -e ""
 if [[ -f "$conf_file" ]]; then
     . "$conf_file"
 fi
@@ -79,13 +81,11 @@ while true; do
   esac
 done
 
-echo -e "${bg_black}${txt_white}                                  ${txt_end}"
-echo -e "${bg_black}${txt_white}  Run the Magento configuration.  ${txt_end}"
-echo -e "${bg_black}${txt_white}                                  ${txt_end}"
+echo -e ""
+echo -e "${txt_blue}  Run the Magento configuration.  ${txt_end}"
+echo -e ""
 
 n98-magerun setup:upgrade
-echo
-n98-magerun deploy:mode:set developer
 echo
 n98-magerun setup:di:compile
 echo

@@ -1,7 +1,9 @@
 #!/usr/bin/env bash
 
 # Backup the current local database
-echo -e "\n${txt_white}${bg_black}Importing into local database(s).${txt_end}\n"
+echo -e ""
+echo -e "${txt_blue}  Importing into local database(s).${txt_end}"
+echo -e ""
 
 mysql -h$DB_HOST -u$DB_USER -p$DB_PASS $DB_DBASE<../backups/latest-m2.sql
 
