@@ -1,7 +1,9 @@
 #!/usr/bin/env bash
 
 # Use the settings to check your connection
-echo -e "\n${txt_white}${bg_black}Retrieving database(s).${txt_end}\n"
+echo -e ""
+echo -e "${txt_blue}  Retrieving database(s).${txt_end}"
+echo -e ""
 
 remote_m2_db_file="$remote_backup_dir/latest-m2.sql.gz"
 remote_wp_db_file="$remote_backup_dir/latest-wp.sql.gz"
