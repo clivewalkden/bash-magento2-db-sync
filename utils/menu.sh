@@ -39,7 +39,7 @@ dbsync_print_help() {
   Options:
     -b, --local-backup: perform a backup before importing remote (off by default)
     -f, --full: full database dump (off by default)
-	-w, --wordpress: include wordpress content (off by default)"
+    -w, --wordpress: include wordpress content (off by default)"
     -v, --version: Prints version
     -h, --help: Prints help
 

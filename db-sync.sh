@@ -32,12 +32,14 @@ echo -e "${txt_blue}  Checking for local configuration file (${conf_file}).  ${t
 echo -e ""
 if [[ -f "$conf_file" ]]; then
     . "$conf_file"
+    echo -e "${txt_blue}  Loaded from config.  ${txt_end}"
 fi
 
 set -e
 
 # Set ${remote_host}
 source "${dbsyncutil}set_remote_host.sh"
+source "${dbsyncutil}set_local_vars.sh"
 
 # Test Connection
 while true; do
@@ -88,11 +90,13 @@ echo -e ""
 n98-magerun setup:upgrade
 echo
 n98-magerun setup:di:compile
+echo 
+n98-magerun setup:static-content:deploy -f -j8 en_GB en_US
 echo
 n98-magerun indexer:reindex
 echo
 n98-magerun cache:flush
 
 echo -e "${bg_green}${txt_white}${txt_bold}                                             ${txt_end}"
-echo -e "${bg_green}${txt_white}${txt_bold}  Database migrated: ${txt_yellow}${domain}  ${txt_end}"
+echo -e "${bg_green}${txt_white}${txt_bold}  Database migrated: ${txt_yellow}${new_domain}  ${txt_end}"
 echo -e "${bg_green}${txt_white}${txt_bold}                                             ${txt_end}"
