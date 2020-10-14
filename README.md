@@ -1,4 +1,4 @@
-# Magento 2 Production DB Sync v1.4.1
+# Magento 2 Production DB Sync v1.5.0
 
 ## About
 A script to copy over a production database to another server, also has the ability to copy across imagery.
@@ -15,7 +15,7 @@ Currently the script is configured to attempt Magento 2 and WordPress database m
 ## Installing and Updating
 To install or update the script run the following curl script
 
-```curl -o- https://raw.githubusercontent.com/clivewalkden/bash-magento2-db-sync/v1.4.1/install.sh | bash```
+```curl -o- https://raw.githubusercontent.com/clivewalkden/bash-magento2-db-sync/master/install.sh | bash```
 
 ## Usage
 To copy over a production database first get a shell on the system you want to copy the data to. 
@@ -30,12 +30,16 @@ $ db-sync.sh
 You can save a configuration file in the Magento directory to save answering some of the questions. An example is included in this repository [example.conf](./example.conf)
 
 ```bash
-remote_host=cotswoldcollections.com
-remote_domain=www.cotswoldcollections.com
+remote_host=domain.com
+remote_domain=www.domain.com
 remote_port=22
 remote_username=magento
 remote_magento_dir=/opt/magento/magento2
 remote_backup_dir=/opt/magento/backups
 remote_shared_deployment_dir=/opt/magento/deployment/shared/magento
+local_backup_dir=/opt/magento/backups
+local_shared_deployment_dir=/opt/magento/deployment/shared/magento
+local_file_user=magento
+local_file_group=magento
 ```
 
