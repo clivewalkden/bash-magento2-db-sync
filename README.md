@@ -15,7 +15,7 @@ Currently the script is configured to attempt Magento 2 and WordPress database m
 ## Installing and Updating
 To install or update the script run the following curl script
 
-```curl -o- https://raw.githubusercontent.com/clivewalkden/bash-magento2-db-sync/v1.4.1/install.sh | bash```
+```curl -o- https://raw.githubusercontent.com/clivewalkden/bash-magento2-db-sync/master/install.sh | bash```
 
 ## Usage
 To copy over a production database first get a shell on the system you want to copy the data to. 

@@ -13,7 +13,7 @@ source "${dbsyncutil}menu.sh"
 
 # Make sure we are in a Magento directory
 if [ ! -f "bin/magento" ]; then
-    echo -e "${bg_red}${txt_white}                                                ${txt_end}"
+    printf '%-1s %-80s %-1s' "${bg_red}${txt_white}" " " "${txt_end}"
     echo -e "${bg_red}${txt_white}  You are not currently in a Magento directory  ${txt_end}"
     echo -e "${bg_red}${txt_white}                                                ${txt_end}"
     exit

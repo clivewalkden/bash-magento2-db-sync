@@ -16,6 +16,8 @@ new_domain=$(printf '%s' "${new_domain}" | sed 's/^https:\/\///g')
 new_domain=$(printf '%s' "${new_domain}" | sed 's/^:\/\///g')
 # remove //
 new_domain=$(printf '%s' "${new_domain}" | sed 's/^\/\///g')
+# remove www.
+new_domain=$(printf '%s' "${new_domain}" | sed 's/^www\.//g')
 # trim multiple and trailing slashes
 new_domain=$(echo ${new_domain} | sed 's:/*$::')
 
@@ -31,13 +33,13 @@ old_domain=$(printf '%s' "${old_domain}" | sed 's/^\/\///g')
 # trim multiple and trailing slashes
 old_domain=$(echo ${old_domain} | sed 's:/*$::')
 
-echo -e "${txt_blue}  Old Domain: ${old_domain} to New Domain: ${new_domain}.${txt_end}"
+echo -e "${txt_blue}  Old Domain: (www.)${old_domain} to New Domain: ${new_domain}.${txt_end}"
 echo -e ""
 
-sed -i "s|$old_domain|$new_domain|g" "${local_backup_dir}/latest-m2.sql"
 sed -i "s|www.$old_domain|$new_domain|g" "${local_backup_dir}/latest-m2.sql"
+sed -i "s|$old_domain|$new_domain|g" "${local_backup_dir}/latest-m2.sql"
 
 if [ $_arg_wordpress == 'on' ]; then
-    sed -i "s|$old_domain|$new_domain|g" "${local_backup_dir}/latest-wp.sql"
     sed -i "s|www.$old_domain|$new_domain|g" "${local_backup_dir}/latest-wp.sql"
+    sed -i "s|$old_domain|$new_domain|g" "${local_backup_dir}/latest-wp.sql"
 fi
