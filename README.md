@@ -1,4 +1,4 @@
-# Magento 2 Production DB Sync v1.5.0
+# Magento 2 Production DB Sync v1.5.1
 
 ## About
 A script to copy over a production database to another server, also has the ability to copy across imagery.

@@ -6,6 +6,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.5.1] - 2020-10-14
+### Fixed
+- Incorrect version in the installer
+
+
 ## [1.5.0] - 2020-10-14
 ### Added
 - New fields for local file owner and group, and local shared directory
