@@ -20,7 +20,7 @@ REMOTE_DB_WP_DBASE=$(n98-magerun config:env:show db.connection.wordpress.dbname)
 if [ $_arg_full == 'on' ]; then
 n98-magerun db:dump --compression="gzip" --strip="@log @sessions" --force $remote_backup_dir/latest-m2.sql.gz
 else
-n98-magerun db:dump --compression="gzip" --strip="@log @sessions @trade @sales" --force $remote_backup_dir/latest-m2.sql.gz
+n98-magerun db:dump --compression="gzip" --strip="@log @sessions @trade @sales $ignore_tables" --force $remote_backup_dir/latest-m2.sql.gz
 fi
 
 if [ $_arg_wordpress == 'on' ]; then

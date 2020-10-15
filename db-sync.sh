@@ -13,18 +13,20 @@ source "${dbsyncutil}menu.sh"
 
 # Make sure we are in a Magento directory
 if [ ! -f "bin/magento" ]; then
-    printf '%-1s %-80s %-1s' "${bg_red}${txt_white}" " " "${txt_end}"
-    echo -e "${bg_red}${txt_white}  You are not currently in a Magento directory  ${txt_end}"
-    echo -e "${bg_red}${txt_white}                                                ${txt_end}"
+    printf '%-1s %-78s %-1s' "${bg_red}${txt_white}" " " "${txt_end}"
+    echo 
+    echo -e "${bg_red}${txt_white}  You are not currently in a Magento directory                                  ${txt_end}"
+    echo -e "${bg_red}${txt_white}                                                                                ${txt_end}"
     exit
 fi
 
 # Set global paths and functions
 source "${dbsyncutil}set_constants.sh"
 
-echo -e "${bg_black}${txt_white}                                              ${txt_end}"
-echo -e "${bg_black}${txt_white}  Copy over a production database to staging  ${txt_end}"
-echo -e "${bg_black}${txt_white}                                              ${txt_end}"
+printf '%-1s %-78s %-1s' "${bg_black}${txt_white}" " " "${txt_end}"
+echo
+echo -e "${bg_black}${txt_white}  Copy over a production database to staging                                    ${txt_end}"
+echo -e "${bg_black}${txt_white}                                                                                ${txt_end}"
 
 # Check for a local config file
 echo -e ""
@@ -97,6 +99,6 @@ n98-magerun indexer:reindex
 echo
 n98-magerun cache:flush
 
-echo -e "${bg_green}${txt_white}${txt_bold}                                             ${txt_end}"
-echo -e "${bg_green}${txt_white}${txt_bold}  Database migrated: ${txt_yellow}${new_domain}  ${txt_end}"
-echo -e "${bg_green}${txt_white}${txt_bold}                                             ${txt_end}"
+echo -e "${bg_green}${txt_white}${txt_bold}                                                                                ${txt_end}"
+printf '%-2s %-76s %-2s' "${bg_green}${txt_white}${txt_bold}" "Database migrated: ${txt_yellow}${new_domain}" "${txt_end}"
+echo -e "${bg_green}${txt_white}${txt_bold}                                                                                ${txt_end}"

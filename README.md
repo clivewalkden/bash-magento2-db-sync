@@ -41,5 +41,6 @@ local_backup_dir=/opt/magento/backups
 local_shared_deployment_dir=/opt/magento/deployment/shared/magento
 local_file_user=magento
 local_file_group=magento
+ignore_tables="mageplaza_smtp_log"
 ```
 
