@@ -13,20 +13,18 @@ source "${dbsyncutil}menu.sh"
 
 # Make sure we are in a Magento directory
 if [ ! -f "bin/magento" ]; then
-    printf '%-1s %-78s %-1s' "${bg_red}${txt_white}" " " "${txt_end}"
-    echo 
-    echo -e "${bg_red}${txt_white}  You are not currently in a Magento directory                                  ${txt_end}"
-    echo -e "${bg_red}${txt_white}                                                                                ${txt_end}"
+    printf "${bg_red}${txt_white}%-80s${txt_end}\n" " "
+    printf "${bg_red}${txt_white}%-80s${txt_end}\n" "  You are not currently in a Magento directory"
+    printf "${bg_red}${txt_white}%-80s${txt_end}\n" " "
     exit
 fi
 
 # Set global paths and functions
 source "${dbsyncutil}set_constants.sh"
 
-printf '%-1s %-78s %-1s' "${bg_black}${txt_white}" " " "${txt_end}"
-echo
-echo -e "${bg_black}${txt_white}  Copy over a production database to staging                                    ${txt_end}"
-echo -e "${bg_black}${txt_white}                                                                                ${txt_end}"
+printf "${bg_black}${txt_white}%-80s${txt_end}\n" " "
+printf "${bg_black}${txt_white}%-80s${txt_end}\n" "  Copy over a production database to staging"
+printf "${bg_black}${txt_white}%-80s${txt_end}\n" " "
 
 # Check for a local config file
 echo -e ""
@@ -85,20 +83,20 @@ while true; do
   esac
 done
 
-echo -e ""
-echo -e "${txt_blue}  Run the Magento configuration.  ${txt_end}"
-echo -e ""
+# Run Magento Config
+while true; do
+  echo -e "\n"
+  read -p "Would you like to run Magento commands? " yn
 
-n98-magerun setup:upgrade
-echo
-n98-magerun setup:di:compile
-echo 
-n98-magerun setup:static-content:deploy -f -j8 en_GB en_US
-echo
-n98-magerun indexer:reindex
-echo
-n98-magerun cache:flush
+  case $yn in
+    [Yy]* ) source "${dbsyncutil}magento_config.sh"; break;;
+    [Nn]* ) break;;
+    * ) echo "Please answer yes or no.";;
+  esac
+done
 
-echo -e "${bg_green}${txt_white}${txt_bold}                                                                                ${txt_end}"
-printf '%-2s %-76s %-2s' "${bg_green}${txt_white}${txt_bold}" "Database migrated: ${txt_yellow}${new_domain}" "${txt_end}"
-echo -e "${bg_green}${txt_white}${txt_bold}                                                                                ${txt_end}"
+echo
+printf "${bg_green}${txt_white}%-80s${txt_end}\n" " "
+printf "${bg_green}${txt_white}${txt_bold}%-21s ${txt_yellow}%-58s${txt_end}\n" "  Database migrated:" "${new_domain}"
+printf "${bg_green}${txt_white}%-80s${txt_end}\n" " "
+echo

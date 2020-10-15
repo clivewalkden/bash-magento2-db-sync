@@ -1,9 +1,9 @@
 #!/usr/bin/env bash
 
 # Set data
-echo -e ""
+echo
 echo -e "${txt_blue}  Enter the local server info.${txt_end}"
-echo -e ""
+echo
 
 # loop until validation
 while [[ -z ${local_backup_dir} ]]; do
@@ -55,10 +55,10 @@ while [[ -z ${local_file_group} ]]; do
   fi
 done
 
-echo -e "\n"
-echo -e " ${txt_green}Using the following for local host${txt_end}"
-echo -e " ${txt_green}  Local Backup Directory:                   ${txt_yellow}${local_backup_dir}${txt_end}"
-echo -e " ${txt_green}  Local Shared Deployment Directory:        ${txt_yellow}${local_shared_deployment_dir}${txt_end}"
-echo -e " ${txt_green}  Local File Owner:                         ${txt_yellow}${local_file_user}${txt_end}"
-echo -e " ${txt_green}  Local File Group:                         ${txt_yellow}${local_file_group}${txt_end}"
-echo -e "\n"
+echo
+printf "${txt_green}%-80s${txt_end}\n" "Using the following for local host"
+printf "${txt_green}%-40s ${txt_yellow}%-40s${txt_end}\n" " Local Backup Directory:" "${local_backup_dir}"
+printf "${txt_green}%-40s ${txt_yellow}%-40s${txt_end}\n" " Local Shared Deployment Directory:" "${local_shared_deployment_dir}"
+printf "${txt_green}%-40s ${txt_yellow}%-40s${txt_end}\n" " Local File Owner:" "${local_file_user}"
+printf "${txt_green}%-40s ${txt_yellow}%-40s${txt_end}\n" " Local File Group:" "${local_file_group}"
+echo

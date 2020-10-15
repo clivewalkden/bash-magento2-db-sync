@@ -5,10 +5,14 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+### Changed
+- Moved Magento commands over to individual file.
+- Unified messaging throughout the app.
+
 
 ## [1.5.1] - 2020-10-14
 ### Fixed
-- Incorrect version in the installer
+- Incorrect version in the installer.
 
 
 ## [1.5.0] - 2020-10-14
