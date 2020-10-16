@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-version="1.6.0-development"
+version="1.6.0"
 
 die()
 {
