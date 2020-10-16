@@ -1,12 +1,13 @@
 #!/usr/bin/env bash
 
 # Use the settings to check your connection
-echo -e "${bg_black}${txt_white}                                   ${txt_end}"
-echo -e "${bg_black}${txt_white}  Backing up remote database(s).   ${txt_end}"
+echo
+printf "${bg_black}${txt_white}%-80s${txt_end}\n" " "
+printf "${bg_black}${txt_white}%-80s${txt_end}\n" " Backing up remote database(s). "
 if [ $_arg_full == 'on' ]; then
-    echo -e "${bg_black}${txt_white}  Full customer and order backup.  ${txt_end}"
+    printf "${bg_black}${txt_white}%-80s${txt_end}\n" " Full customer and order backup. "
 fi
-echo -e "${bg_black}${txt_white}                                   ${txt_end}"
+printf "${bg_black}${txt_white}%-80s${txt_end}\n" " "
 
 ssh -p "${remote_port}" "${remote_username}@${remote_host}" <<ENDSSH
 mkdir -p $remote_backup_dir
@@ -18,12 +19,12 @@ REMOTE_DB_WP_PASS=$(n98-magerun config:env:show db.connection.wordpress.password
 REMOTE_DB_WP_DBASE=$(n98-magerun config:env:show db.connection.wordpress.dbname)
 
 if [ $_arg_full == 'on' ]; then
-n98-magerun db:dump --compression="gzip" --strip="@log @sessions" --force $remote_backup_dir/latest-m2.sql.gz
+n98-magerun --quiet --no-interaction db:dump --compression="gzip" --strip="@log @sessions" --force $remote_backup_dir/latest-m2.sql.gz
 else
-n98-magerun db:dump --compression="gzip" --strip="@log @sessions @trade @sales" --force $remote_backup_dir/latest-m2.sql.gz
+n98-magerun --quiet --no-interaction db:dump --compression="gzip" --strip="@log @sessions @trade @sales $ignore_tables" --force $remote_backup_dir/latest-m2.sql.gz
 fi
 
 if [ $_arg_wordpress == 'on' ]; then
-n98-magerun db:dump --compression="gzip" --connection="wordpress" --force $remote_backup_dir/latest-wp.sql.gz
+n98-magerun --quiet --no-interaction db:dump --compression="gzip" --connection="wordpress" --force $remote_backup_dir/latest-wp.sql.gz
 fi
 ENDSSH

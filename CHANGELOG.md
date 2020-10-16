@@ -6,9 +6,18 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.6.0] - 2020-10-16
+### Added
+- Added ignore tables option for the main config which is passed to n98-magerun2.
+
+### Changed
+- Moved Magento commands over to individual file.
+- Unified messaging throughout the app.
+
+
 ## [1.5.1] - 2020-10-14
 ### Fixed
-- Incorrect version in the installer
+- Incorrect version in the installer.
 
 
 ## [1.5.0] - 2020-10-14
