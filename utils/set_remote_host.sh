@@ -1,9 +1,9 @@
 #!/usr/bin/env bash
 
 # Set data
-echo -e ""
+echo
 echo -e "${txt_blue}  Enter the remote server info.${txt_end}"
-echo -e ""
+echo
 
 # loop until validation
 while [[ -z ${remote_host} ]]; do
@@ -90,13 +90,13 @@ while [[ -z ${remote_shared_deployment_dir} ]]; do
   fi
 done
 
-echo -e "\n"
-echo -e " ${txt_green}Using the following for remote host${txt_end}"
-echo -e " ${txt_green}  Remote Host:                              ${txt_yellow}${remote_host}${txt_end}"
-echo -e " ${txt_green}  Remote Domain:                            ${txt_yellow}${remote_domain}${txt_end}"
-echo -e " ${txt_green}  Remote Port:                              ${txt_yellow}${remote_port}${txt_end}"
-echo -e " ${txt_green}  Remote Username:                          ${txt_yellow}${remote_username}${txt_end}"
-echo -e " ${txt_green}  Remote Host Magento Dir:                  ${txt_yellow}${remote_magento_dir}${txt_end}"
-echo -e " ${txt_green}  Remote Host Backup Dir:                   ${txt_yellow}${remote_backup_dir}${txt_end}"
-echo -e " ${txt_green}  Remote Host Shared Deployment Backup Dir: ${txt_yellow}${remote_shared_deployment_dir}${txt_end}"
-echo -e "\n"
+echo
+printf "${txt_green}%-80s${txt_end}\n" "Using the following for Remote host"
+printf "${txt_green}%-40s ${txt_yellow}%-40s${txt_end}\n" " Host:" "${remote_host}"
+printf "${txt_green}%-40s ${txt_yellow}%-40s${txt_end}\n" " Domain:" "${remote_domain}"
+printf "${txt_green}%-40s ${txt_yellow}%-40s${txt_end}\n" " Port:" "${remote_port}"
+printf "${txt_green}%-40s ${txt_yellow}%-40s${txt_end}\n" " Username:" "${remote_username}"
+printf "${txt_green}%-40s ${txt_yellow}%-40s${txt_end}\n" " Host Magento Dir:" "${remote_magento_dir}"
+printf "${txt_green}%-40s ${txt_yellow}%-40s${txt_end}\n" " Host Backup Dir:" "${remote_backup_dir}"
+printf "${txt_green}%-40s ${txt_yellow}%-40s${txt_end}\n" " Host Shared Deployment Backup Dir:" "${remote_shared_deployment_dir}"
+echo
