@@ -5,6 +5,11 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+
+## [1.6.0] - 2020-10-16
+### Added
+- Added ignore tables option for the main config which is passed to n98-magerun2.
+
 ### Changed
 - Moved Magento commands over to individual file.
 - Unified messaging throughout the app.
