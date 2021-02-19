@@ -5,8 +5,11 @@ echo -e ""
 echo -e "${txt_blue}  Update the database urls to current environment.${txt_end}"
 echo -e ""
 
-# TODO: need to catch if this fails
-CURRENT_URL=$(n98-magerun config:show web/secure/base_url)
+# Get the URL from n98, if the first option fails it'll from from the end
+if ! CURRENT_URL=$(n98-magerun config:show web/secure/base_url); then
+    CURRENT_URL=$(n98-magerun config:env:show system.default.web.secure.base_url)
+fi
+
 new_domain=${CURRENT_URL,,}
 # remove http://
 new_domain=$(printf '%s' "${new_domain}" | sed 's/^http:\/\///g')
