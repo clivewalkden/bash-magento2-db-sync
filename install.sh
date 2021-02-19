@@ -46,7 +46,7 @@
     if [ -d "$INSTALL_DIR/.git" ]; then
       echo "=> db-sync is already installed in $INSTALL_DIR, trying to update using git"
       command printf '\r=> '
-      command git --git-dir="$INSTALL_DIR"/.git --work-tree="$INSTALL_DIR" fetch origin tag "$(dbsync_version $1)" --depth=1  || {
+      command git --git-dir="$INSTALL_DIR"/.git --work-tree="$INSTALL_DIR" fetch origin tag "$(dbsync_version $1)" --depth=1 2>/dev/null || {
         echo >&2 "Failed to update db-sync, run 'git fetch' in $INSTALL_DIR yourself."
         exit 1
       }
