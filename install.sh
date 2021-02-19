@@ -24,7 +24,7 @@
 
   dbsync_version() {
     local DBSYNC_VERSION="$(dbsync_latest_version)"
-    if [ ! -z $1]; then
+    if [ ! -z "$1" ]; then
       DBSYNC_VERSION="$1"
     fi
 
@@ -46,7 +46,7 @@
     if [ -d "$INSTALL_DIR/.git" ]; then
       echo "=> db-sync is already installed in $INSTALL_DIR, trying to update using git"
       command printf '\r=> '
-      command git --git-dir="$INSTALL_DIR"/.git --work-tree="$INSTALL_DIR" fetch origin tag "$(dbsync_version $1)" --depth=1 2>/dev/null || {
+      command git --git-dir="$INSTALL_DIR"/.git --work-tree="$INSTALL_DIR" fetch origin tag "$(dbsync_version $1)" --depth=1  || {
         echo >&2 "Failed to update db-sync, run 'git fetch' in $INSTALL_DIR yourself."
         exit 1
       }
@@ -122,6 +122,6 @@
     unset -f dbsync_install_dir dbsync_latest_version dbsync_version dbsync_source do_install
   }
 
-  do_install
+  do_install $1
 
 } # this ensures the entire script is downloaded #
