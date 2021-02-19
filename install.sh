@@ -22,6 +22,15 @@
     echo "$DBSYNC_SOURCE_URL"
   }
 
+  dbsync_version() {
+    local DBSYNC_VERSION="$(dbsync_latest_version)"
+    if [ ! -z $1]; then
+      DBSYNC_VERSION="$1"
+    fi
+
+    echo "$DBSYNC_VERSION"
+  }
+
   do_install() {
     local INSTALL_DIR
     INSTALL_DIR="$(dbsync_install_dir)"
@@ -37,7 +46,7 @@
     if [ -d "$INSTALL_DIR/.git" ]; then
       echo "=> db-sync is already installed in $INSTALL_DIR, trying to update using git"
       command printf '\r=> '
-      command git --git-dir="$INSTALL_DIR"/.git --work-tree="$INSTALL_DIR" fetch origin tag "$(dbsync_latest_version)" --depth=1 2>/dev/null || {
+      command git --git-dir="$INSTALL_DIR"/.git --work-tree="$INSTALL_DIR" fetch origin tag "$(dbsync_version $1)" --depth=1 2>/dev/null || {
         echo >&2 "Failed to update db-sync, run 'git fetch' in $INSTALL_DIR yourself."
         exit 1
       }
@@ -56,18 +65,18 @@
           echo >&2 'Failed to add remote "origin" (or set the URL). Please report this!'
           exit 2
         }
-        command git --git-dir="${INSTALL_DIR}/.git" fetch origin tag "$(dbsync_latest_version)" --depth=1 || {
+        command git --git-dir="${INSTALL_DIR}/.git" fetch origin tag "$(dbsync_version $1)" --depth=1 || {
           echo >&2 'Failed to fetch origin with tags. Please report this!'
           exit 2
         }
       else
-        command git -c advice.detachedHead=false clone "$(dbsync_source)" -b "$(dbsync_latest_version)" --depth=1 "${INSTALL_DIR}" || {
+        command git -c advice.detachedHead=false clone "$(dbsync_source)" -b "$(dbsync_version $1)" --depth=1 "${INSTALL_DIR}" || {
           echo >&2 'Failed to clone dbsync repo. Please report this!'
           exit 2
         }
       fi
     fi
-    command git -c advice.detachedHead=false --git-dir="$INSTALL_DIR"/.git --work-tree="$INSTALL_DIR" checkout -f --quiet "$(dbsync_latest_version)"
+    command git -c advice.detachedHead=false --git-dir="$INSTALL_DIR"/.git --work-tree="$INSTALL_DIR" checkout -f --quiet "$(dbsync_version $1)"
     if [ -n "$(command git --git-dir="$INSTALL_DIR"/.git --work-tree="$INSTALL_DIR" show-ref refs/heads/master)" ]; then
       if command git --git-dir="$INSTALL_DIR"/.git --work-tree="$INSTALL_DIR" branch --quiet 2>/dev/null; then
         command git --git-dir="$INSTALL_DIR"/.git --work-tree="$INSTALL_DIR" branch --quiet -D master >/dev/null 2>&1
@@ -110,7 +119,7 @@
   # during the execution of the install script
   #
   dbsync_reset() {
-    unset -f dbsync_install_dir dbsync_latest_version dbsync_source do_install
+    unset -f dbsync_install_dir dbsync_latest_version dbsync_version dbsync_source do_install
   }
 
   do_install

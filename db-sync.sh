@@ -71,6 +71,11 @@ while true; do
   esac
 done
 
+# Add prefix to sequence table
+if [ $_arg_prefix == 'on' ]; then
+  source "${dbsyncutil}prefix.sh";
+fi
+
 # Import latest imagery
 while true; do
   echo -e "\n"
