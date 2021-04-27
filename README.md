@@ -1,4 +1,4 @@
-# Magento 2 Production DB Sync v1.5.1
+# Magento 2 Production DB Sync v1.7.0
 
 ## About
 A script to copy over a production database to another server, also has the ability to copy across imagery.
@@ -11,6 +11,7 @@ Currently the script is configured to attempt Magento 2 and WordPress database m
 - MySQL (or equivalent) needs to be installed on both the local machine and the server (obviously).
 - Magento 2 needs to be installed and configured on both the local and the host machine.
 - rsync needs to be installed locally.
+- Magento URL's set in the env.php file `system.default.web.secure.base_url`.
 
 ## Installing and Updating
 To install or update the script run the following curl script

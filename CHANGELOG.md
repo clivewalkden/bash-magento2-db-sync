@@ -6,6 +6,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.7.0] - 2021-04-27
+### Added
+- New flag to add prefix to sales orders, invoices, credit memos and shipments.
+- Ability to change installed version when installing.
+
+### Changed
+- Call to the site url changed and backup added.
+
+
 ## [1.6.0] - 2020-10-16
 ### Added
 - Added ignore tables option for the main config which is passed to n98-magerun2.
