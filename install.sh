@@ -7,7 +7,7 @@
   }
 
   dbsync_latest_version() {
-    echo "v1.6.0"
+    echo "v1.7.0"
   }
 
   #
