@@ -41,8 +41,3 @@ echo -e ""
 
 sed -i "s|www.$old_domain|$new_domain|g" "${local_backup_dir}/latest-m2.sql"
 sed -i "s|$old_domain|$new_domain|g" "${local_backup_dir}/latest-m2.sql"
-
-if [ $_arg_wordpress == 'on' ]; then
-    sed -i "s|www.$old_domain|$new_domain|g" "${local_backup_dir}/latest-wp.sql"
-    sed -i "s|$old_domain|$new_domain|g" "${local_backup_dir}/latest-wp.sql"
-fi

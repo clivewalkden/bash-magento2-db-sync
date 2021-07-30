@@ -6,6 +6,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Changed
+- Database dump no includes the --no-tablespaces option to stop PROCESS provilege error. (Requires n98-magerun >4.3.0).
+- WordPress backup now runs search-replace on remote host export.
+- Magento database import now uses n98-magerun to import database.
+- WordPress import now uses wp-cli to import database.
+- Tidy up of unneeded variables.
+
+
 ## [1.7.0] - 2021-04-27
 ### Added
 - New flag to add prefix to sales orders, invoices, credit memos and shipments.
