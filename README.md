@@ -1,4 +1,4 @@
-# Magento 2 Production DB Sync v1.7.0
+# Magento 2 Production DB Sync v1.7.1
 
 ## About
 A script to copy over a production database to another server, also has the ability to copy across imagery.
@@ -8,6 +8,7 @@ Currently the script is configured to attempt Magento 2 and WordPress database m
 ## Requirements
 - You need curl installed locally. 
 - The excellent [n98-magerun2](https://github.com/netz98/n98-magerun2) needs to be installed on both the local machine and the production machine. (Needs to be executable as n98-magerun).
+- WP-CLI needs to be installed when working with WordPress as well.
 - MySQL (or equivalent) needs to be installed on both the local machine and the server (obviously).
 - Magento 2 needs to be installed and configured on both the local and the host machine.
 - rsync needs to be installed locally.
