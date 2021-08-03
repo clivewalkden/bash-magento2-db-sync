@@ -6,6 +6,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.7.2] - 2021-08-03
+### Changed
+- Reverted full WordPress regex find-replace as the domain is used in the main site config not the full url
+
+
 ## [1.7.1] - 2021-07-30
 ### Changed
 - Database dump no includes the --no-tablespaces option to stop PROCESS provilege error. (Requires n98-magerun >4.3.0).
