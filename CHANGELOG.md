@@ -6,6 +6,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.7.2] - 2021-08-03
 ### Changed
 - Reverted full WordPress regex find-replace as the domain is used in the main site config not the full url
 
