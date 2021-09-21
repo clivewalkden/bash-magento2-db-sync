@@ -56,6 +56,6 @@ fi
 
 if [ $_arg_wordpress == 'on' ]; then
 cd wp
-wp search-replace '$old_domain' '$new_domain' --export | gzip > $remote_backup_dir/latest-wp.sql.gz
+wp search-replace '$old_domain' '$new_domain' --all-tables --export | gzip > $remote_backup_dir/latest-wp.sql.gz
 fi
 ENDSSH
