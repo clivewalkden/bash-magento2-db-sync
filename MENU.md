@@ -4,7 +4,7 @@ Use the below to generate the menu.sh file from the site [https://argbash.io/gen
 
 ```
 #!/bin/bash
-# version="1.7.2"
+# version="1.7.3"
 #
 # This is an optional arguments-only example of Argbash potential
 #
