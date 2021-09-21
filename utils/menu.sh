@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-version="1.7.2"
+version="1.7.3"
 
 die()
 {
