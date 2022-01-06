@@ -6,6 +6,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.8.0] - 2022-01-06
 ### Added
 - Support for multiple PHP bin version on remote host
 - Remote backup is deleted after retrieval to help detect any issues with the remote backup proceedure
