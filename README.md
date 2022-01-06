@@ -1,4 +1,4 @@
-# Magento 2 Production DB Sync v1.7.3
+# Magento 2 Production DB Sync v1.8.0
 
 ## About
 A script to copy over a production database to another server, also has the ability to copy across imagery.
@@ -39,6 +39,8 @@ remote_username=magento
 remote_magento_dir=/opt/magento/magento2
 remote_backup_dir=/opt/magento/backups
 remote_shared_deployment_dir=/opt/magento/deployment/shared/magento
+remote_php_path="/usr/bin/php"
+remote_n98_path="/usr/local/bin/n98-magerun"
 local_backup_dir=/opt/magento/backups
 local_shared_deployment_dir=/opt/magento/deployment/shared/magento
 local_file_user=magento

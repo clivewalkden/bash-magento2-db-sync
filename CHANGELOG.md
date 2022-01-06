@@ -6,6 +6,18 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+- Support for multiple PHP bin version on remote host
+- Remote backup is deleted after retrieval to help detect any issues with the remote backup proceedure
+- Started work on ini configuration for better option support
+- Added sozo_imagify to the image directories ignored during image sync
+- shini for future ini config usage
+- Added localinstall for development testing
+
+### Changed
+- Updated tables to drop when stripping content
+
+
 ## [1.7.3] - 2021-09-21
 ### Changed
 - Added the `--all-tables` flag to the WordPress database backup as some tables were missed without it

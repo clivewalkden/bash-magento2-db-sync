@@ -48,10 +48,23 @@ ssh -p "${remote_port}" "${remote_username}@${remote_host}" <<ENDSSH
 mkdir -p $remote_backup_dir
 cd $remote_magento_dir
 
+# Check the commands are available
+if ! command -v $remote_php_path &> /dev/null
+then
+    echo "$remote_php_path could not be found"
+    exit
+fi
+
+if ! command -v $remote_n98_path &> /dev/null
+then
+    echo "$remote_n98_path could not be found"
+    exit
+fi
+
 if [ $_arg_full == 'on' ]; then
-n98-magerun --quiet --no-interaction db:dump --no-tablespaces --compression="gzip" --strip="@log @sessions" --force $remote_backup_dir/latest-m2.sql.gz
+$remote_php_path $remote_n98_path --quiet --no-interaction db:dump --no-tablespaces --compression="gzip" --strip="@log @sessions" --force $remote_backup_dir/latest-m2.sql.gz
 else
-n98-magerun --quiet --no-interaction db:dump --no-tablespaces --compression="gzip" --strip="@log @sessions @trade @sales $ignore_tables" --force $remote_backup_dir/latest-m2.sql.gz
+$remote_php_path $remote_n98_path --quiet --no-interaction db:dump --no-tablespaces --compression="gzip" --strip="@log @sessions @trade @sales @idx @aggregated @temp @newrelic_reporting $ignore_tables" --force $remote_backup_dir/latest-m2.sql.gz
 fi
 
 if [ $_arg_wordpress == 'on' ]; then

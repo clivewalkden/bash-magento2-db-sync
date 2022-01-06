@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-version="1.7.3"
+version="1.8.0"
 
 die()
 {
@@ -26,6 +26,7 @@ _arg_full="off"
 _arg_local_backup="off"
 _arg_prefix="off"
 _arg_wordpress="off"
+_arg_yes="off"
 
 dbsync_print_help() {
   cat <<HEREDOC
@@ -101,6 +102,18 @@ parse_commandline()
 				if test -n "$_next" -a "$_next" != "$_key"
 				then
 					{ begins_with_short_option "$_next" && shift && set -- "-w" "-${_next}" "$@"; } || die "The short option '$_key' can't be decomposed to ${_key:0:2} and -${_key:2}, because ${_key:0:2} doesn't accept value and '-${_key:2:1}' doesn't correspond to a short option."
+				fi
+				;;
+			-y|--no-yes|--yes)
+				_arg_yes="on"
+				test "${1:0:5}" = "--no-" && _arg_yes="off"
+				;;
+			-y*)
+				_arg_yes="on"
+				_next="${_key##-y}"
+				if test -n "$_next" -a "$_next" != "$_key"
+				then
+					{ begins_with_short_option "$_next" && shift && set -- "-y" "-${_next}" "$@"; } || die "The short option '$_key' can't be decomposed to ${_key:0:2} and -${_key:2}, because ${_key:0:2} doesn't accept value and '-${_key:2:1}' doesn't correspond to a short option."
 				fi
 				;;
 			-v|--version)

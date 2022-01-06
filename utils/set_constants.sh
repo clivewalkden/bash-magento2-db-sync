@@ -56,6 +56,7 @@ function existRemoteFile ()
     fi
 }
 
+ini_file=../db-sync.ini
 conf_file=../backup.conf
 
 DB_HOST=$(n98-magerun config:env:show db.connection.default.host)

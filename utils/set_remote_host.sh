@@ -99,4 +99,6 @@ printf "${txt_green}%-40s ${txt_yellow}%-40s${txt_end}\n" " Username:" "${remote
 printf "${txt_green}%-40s ${txt_yellow}%-40s${txt_end}\n" " Host Magento Dir:" "${remote_magento_dir}"
 printf "${txt_green}%-40s ${txt_yellow}%-40s${txt_end}\n" " Host Backup Dir:" "${remote_backup_dir}"
 printf "${txt_green}%-40s ${txt_yellow}%-40s${txt_end}\n" " Host Shared Deployment Backup Dir:" "${remote_shared_deployment_dir}"
+printf "${txt_green}%-40s ${txt_yellow}%-40s${txt_end}\n" " Remote PHP Bin:" "${remote_php_path}"
+printf "${txt_green}%-40s ${txt_yellow}%-40s${txt_end}\n" " Remote n98-magerun Bin:" "${remote_n98_path}"
 echo
