@@ -30,10 +30,18 @@ printf "${bg_black}${txt_white}%-80s${txt_end}\n" " "
 echo -e ""
 echo -e "${txt_blue}  Checking for local configuration file (${conf_file}).  ${txt_end}"
 echo -e ""
-if [[ -f "$conf_file" ]]; then
+# Load config from either .ini or .conf
+if [[ -f "$ini_file" ]]; then
+    source "${dbsyncutil}shini.sh"
+    source "${dbsyncutil}read_ini.sh"
+    echo -e "${txt_blue}  Loaded from ini.  ${txt_end}"
+elif [[ -f "$conf_file" ]]; then
     . "$conf_file"
     echo -e "${txt_blue}  Loaded from config.  ${txt_end}"
+else
+    echo -e "${txt_blue}  No config to load.  ${txt_end}"
 fi
+
 
 set -e
 
@@ -56,6 +64,7 @@ done
 # Run the remote backup
 source "${dbsyncutil}remote_backup.sh"
 source "${dbsyncutil}remote_retrieve.sh"
+source "${dbsyncutil}cleanup.sh"
 source "${dbsyncutil}local_backup.sh"
 source "${dbsyncutil}url_update.sh"
 
